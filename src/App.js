@@ -5,9 +5,12 @@ import './dist/style.css'
 import Addform from './components/Addform';
 import Addform2 from './components/Addform2';
 import useFetch from './API/useFetch'
+import { useState } from 'react'
 
 function App() {
   const { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
+  const [items, setItems] = useState(tracks);
+
   const handleDelete = async (id) => {
     await fetch(`http://localhost:8000/tracks/${id}`,
       {

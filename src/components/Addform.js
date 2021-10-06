@@ -61,6 +61,12 @@ const Addform = () => {
         validate
     });
 
+    const years = [];
+    let year = new Date().getFullYear();
+    for (let i = year; i > 1899; i--) {
+        years.push(i)
+    }
+
     return (
         <>
             <form className="form flex flex-col px-16 pl-28 max-w-lg" action="results.js" onSubmit={formik.handleSubmit}>
@@ -90,7 +96,12 @@ const Addform = () => {
                     </select>
 
                     <label htmlFor="year">Year</label>
-                    <input type="number" placeholder="year" name="year" id="year" value={formik.values.year} onChange={formik.handleChange} />
+                    <select name="year" id="year">
+                        {years.map((year, index) => (
+                            <option key={`year${index}`} value={formik.values.year} onChange={formik.handleChange}>{year}</option>
+                        ))}
+                    </select>
+
                     {formik.errors.year ? <div className="error">{formik.errors.year}</div> : null}
                     <div>
                         <button type="submit" className="transform ease-in duration-100 hover:scale-105">Save</button>

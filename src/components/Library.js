@@ -1,6 +1,7 @@
 const Library = ({ tracks, handleDelete }) => {
 
     console.log(tracks)
+
     return (
         <div className="flex flex-col p-8">
             <h1 className="flex flex-col">Recently Added</h1>
