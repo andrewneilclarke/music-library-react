@@ -1,0 +1,76 @@
+{
+  "tracks": [
+    {
+      "id": 1,
+      "title": "Do it again",
+      "artist": "Steely Dan",
+      "album": "Can't Buy a Thrill",
+      "genre": "70s Rock",
+      "location": "//Desktop/doitagain.mp3",
+      "path": "",
+      "description": "",
+      "year": 1971,
+      "artwork": "https://upload.wikimedia.org/wikipedia/en/b/b2/Cant_buy_a_tcant_buy_a_thrill.jpg"
+    },
+    {
+      "title": "asdasd",
+      "artist": "asdasd",
+      "album": "asdas",
+      "genre": "Jazz",
+      "location": "http://localhost:3000/results.js?songtitle=sadasd&artist=ddd",
+      "path": "",
+      "description": "",
+      "id": "eff774ad21-4f9c-a91a-2892c7536e5e",
+      "year": 1984,
+      "artwork": "https://upload.wikimedia.org/wikipedia/en/b/b2/Cant_buy_a_tcant_buy_a_thrill.jpg"
+    },
+    {
+      "title": "asdasd",
+      "artist": "asdasd",
+      "album": "asdas",
+      "genre": "Jazz",
+      "location": "http://localhost:3000/results.js?songtitle=sadasd&artist=ddd",
+      "path": "",
+      "description": "",
+      "id": "eff774ad-4321-4f9c-a91a-c7536e5e",
+      "year": 1984,
+      "artwork": "https://upload.wikimedia.org/wikipedia/en/b/b2/Cant_buy_a_tcant_buy_a_thrill.jpg"
+    },
+    {
+      "title": "asdasd",
+      "artist": "asdasd",
+      "album": "asdas",
+      "genre": "Jazz",
+      "location": "http://localhost:3000/results.js?songtitle=sadasd&artist=ddd",
+      "path": "",
+      "description": "",
+      "id": "eff774ad-4321-4f9c-a91a-2892c755e",
+      "year": 1984,
+      "artwork": "https://upload.wikimedia.org/wikipedia/en/b/b2/Cant_buy_a_tcant_buy_a_thrill.jpg"
+    },
+    {
+      "title": "asdasd",
+      "artist": "asdasd",
+      "album": "asdas",
+      "genre": "Jazz",
+      "location": "http://localhost:3000/results.js?songtitle=sadasd&artist=ddd",
+      "path": "",
+      "description": "",
+      "id": "eff774ad-4321-4f9c-1a-2892c7536e5e",
+      "year": 1984,
+      "artwork": "https://upload.wikimedia.org/wikipedia/en/b/b2/Cant_buy_a_tcant_buy_a_thrill.jpg"
+    },
+    {
+      "title": "asdasd",
+      "artist": "asdasd",
+      "album": "asdas",
+      "genre": "Jazz",
+      "location": "http://localhost:3000/results.js?songtitle=sadasd&artist=ddd",
+      "path": "",
+      "description": "",
+      "id": "eff774ad-4321-91a-2892c7536e5e",
+      "year": 1984,
+      "artwork": "https://upload.wikimedia.org/wikipedia/en/b/b2/Cant_buy_a_tcant_buy_a_thrill.jpg"
+    }
+  ]
+}
