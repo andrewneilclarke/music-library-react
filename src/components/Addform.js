@@ -1,8 +1,7 @@
 // import { useState } from "react"
 import { useFormik } from 'formik'
-import { v4 as uuid } from 'uuid';
 
-const Addform = () => {
+const Addform = ({ onSubmit }) => {
     let initialValues = {
         title: '',
         artist: '',
@@ -26,19 +25,22 @@ const Addform = () => {
     //     console.log(initialValues.title)
     // };
 
-    const onSubmit = (values) => {
+    // const onSubmit = (values) => {
+    //     localStorage.getItem('tracks')
 
-        fetch('http://localhost:8000/tracks',
-            {
-                method: 'POST',
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify({ ...values, id: uuid() }),
-            })
-            // .then
-            // clearValues();
-            .then(() => console.log(values)
-            )
-    }
+    //     fetch('http://localhost:8000/tracks',
+    //         {
+    //             method: 'POST',
+    //             headers: { "content-type": "application/json" },
+    //             body: JSON.stringify({ ...values, id: uuid() }),
+    //         })
+
+    // .then
+    // clearValues();
+    //         .then(() => console.log(values)
+    //         )
+    // }
+
 
     const validate = values => {
         let errors = {}
