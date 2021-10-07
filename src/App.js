@@ -4,7 +4,7 @@ import Nav from './components/Nav';
 import Library from './components/Library';
 import './dist/style.css'
 import Addform from './components/Addform';
-import useFetch from './API/useFetch'
+// import useFetch from './API/useFetch'
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid';
 
@@ -18,7 +18,7 @@ function App() {
   const handleDelete = async (id) => {
     let getLocalStorage = JSON.parse(localStorage.getItem('tracks'));
     //remove the item in storage
-    let newStorage = getLocalStorage.filter((id) => id !== id);
+    let newStorage = getLocalStorage.filter((item) => item.id !== id);
     //assign array back to LocalStorage
     localStorage.setItem('tracks', JSON.stringify(newStorage));
     // remove item from state
