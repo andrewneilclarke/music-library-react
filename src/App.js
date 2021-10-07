@@ -10,7 +10,7 @@ import { v4 as uuid } from 'uuid';
 
 function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
-  const [tracks, setTracks] = useState(JSON.parse(localStorage.getItem('tracks'))) || JSON.parse([]);
+  const [tracks, setTracks] = useState(JSON.parse(localStorage.getItem('tracks')) || []);
   console.log(typeof JSON.parse(localStorage.getItem('tracks')))
   console.log(typeof tracks)
   console.log(Array.isArray(tracks))
@@ -43,12 +43,14 @@ function App() {
   }
   const onSubmit = (values) => {
     const newTrack = { ...values, id: uuid() };
-    let newArray
-    newArray.push(tracks);
-    newArray.push(newTrack);
-    setTracks(newArray)
-    // console.log(typeof newTrack)
-    // console.log(typeof ([...tracks, newTrack]))
+    if (tracks) {
+      let newArray = [...tracks, newTrack];
+      // newArray.push(tracks);
+      // newArray.push(newTrack);
+      setTracks(newArray)
+      // console.log(typeof newTrack)
+      // console.log(typeof ([...tracks, newTrack]))
+    }
   }
 
   useEffect(() => {
