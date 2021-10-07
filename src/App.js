@@ -43,7 +43,9 @@ function App() {
   }
   const onSubmit = (values) => {
     const newTrack = { ...values, id: uuid() };
-    const newArray = [...tracks, newTrack]
+    let newArray
+    newArray.push(tracks);
+    newArray.push(newTrack);
     setTracks(newArray)
     // console.log(typeof newTrack)
     // console.log(typeof ([...tracks, newTrack]))
