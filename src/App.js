@@ -63,7 +63,7 @@ function App() {
           {error && <h2>Something went wrong</h2>} */}
         </Route>
         <Route path="/add">
-          {tracks &&
+          {
             <Addform onSubmit={onSubmit} />
           }
         </Route>
