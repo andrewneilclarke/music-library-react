@@ -8,7 +8,7 @@ const Addform = () => {
         artist: '',
         album: '',
         genre: '',
-        year: null,
+        year: '',
         location: '',
         path: '',
         comment: '',
@@ -96,9 +96,9 @@ const Addform = () => {
                     </select>
 
                     <label htmlFor="year">Year</label>
-                    <select name="year" id="year">
+                    <select name="year" id="year" value={formik.values.year} onChange={formik.handleChange} >
                         {years.map((year, index) => (
-                            <option key={`year${index}`} value={formik.values.year} onChange={formik.handleChange}>{year}</option>
+                            <option key={`year${index}`}>{year}</option>
                         ))}
                     </select>
 

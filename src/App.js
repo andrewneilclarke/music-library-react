@@ -3,7 +3,6 @@ import Nav from './components/Nav';
 import Library from './components/Library';
 import './dist/style.css'
 import Addform from './components/Addform';
-import Addform2 from './components/Addform2';
 import useFetch from './API/useFetch'
 import { useState } from 'react'
 
@@ -18,9 +17,11 @@ function App() {
       })
       .then(() => console.log(id, ' deleted!')
       )
-      .then(() => tracks.filter(track => track.id !== id)
+      .then(() => setItems(tracks.filter(track => track.id !== id))
       )
+    console.log('Items ', items)
   }
+
   return (
     <Router>
       <Nav />
@@ -29,6 +30,8 @@ function App() {
           {tracks &&
             <Library tracks={tracks} handleDelete={handleDelete} />
           }
+          {loading && <h2>Loading</h2>}
+          {error && <h2>Something went wrong</h2>}
         </Route>
         <Route path="/add">
           {tracks &&
