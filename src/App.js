@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
   const [tracks, setTracks] = useState(JSON.parse(localStorage['tracks']) || []);
+  // console.log(JSON.stringify(localStorage['tracks']));
   // console.log(JSON.stringify(tracks))
   // console.log('Items ', items)
   // console.log('Tracks ', tracks)
