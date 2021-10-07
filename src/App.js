@@ -12,6 +12,9 @@ function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
   const [tracks, setTracks] = useState(JSON.parse(localStorage.getItem('tracks'))) || JSON.parse([]);
   console.log(typeof JSON.parse(localStorage.getItem('tracks')))
+  console.log(typeof tracks)
+  console.log(Array.isArray(tracks))
+
   // console.log((localStorage['tracks']))
   // console.log(JSON.parse(localStorage['tracks']));
   // console.log(JSON.stringify([]));
@@ -40,9 +43,8 @@ function App() {
   }
   const onSubmit = (values) => {
     const newTrack = { ...values, id: uuid() };
-    console.log(newTrack)
-
-    setTracks([...tracks, newTrack])
+    const newArray = [...tracks, newTrack]
+    setTracks(newArray)
     // console.log(typeof newTrack)
     // console.log(typeof ([...tracks, newTrack]))
   }
