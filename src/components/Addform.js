@@ -1,7 +1,15 @@
 import { useFormik } from 'formik'
+import { useState } from 'react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+// import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import parse from 'html-react-parser'
 
 const Addform = ({ onSubmit, pageTitle }) => {
-
+    const [textBox, setTextBox] = useState('')
 
     let initialValues = {
         title: '',
@@ -11,20 +19,10 @@ const Addform = ({ onSubmit, pageTitle }) => {
         year: '',
         location: '',
         path: '',
-        comment: '',
+        review: '',
         artwork: ''
     }
 
-    // const clearValues = () => {
-    //     initialValues.title = '',
-    //         initialValues.artist = '',
-    //         initialValues.album = '',
-    //         initialValues.genre = '',
-    //         initialValues.location = '',
-    //         initialValues.path = '',
-    //         initialValues.comment = ''
-    //     console.log(initialValues.title)
-    // };
 
     // const onSubmit = (values) => {
     //     localStorage.getItem('tracks')
@@ -106,6 +104,28 @@ const Addform = ({ onSubmit, pageTitle }) => {
                     </select>
 
                     {formik.errors.year ? <div className="error">{formik.errors.year}</div> : null}
+
+                    <label htmlFor="review">Review</label>
+                    {parse(textBox)}
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={textBox}
+                        value={formik.values.review}
+                        name="review" id="review"
+                        onChange={(e, editor) => {
+                            formik.handleChange('review');
+                            const data = editor.getData()
+                            // setTextBox(e.target.value)
+                            setTextBox(data)
+                            // formik.handleChange();
+                        }}
+                        config={{
+                            // plugins: [Paragraph, Bold, Italic, Essentials],
+                            toolbar: ['bold', 'italic']
+                        }}
+                    />
+                    {/* <textarea className="rounded-2xl" name="review" id="review" cols="1" rows="5" value={formik.values.review} onChange={formik.handleChange}></textarea> */}
+
                     <div>
                         <button type="submit" className="transform ease-in duration-100 hover:scale-105">Save</button>
                     </div>
@@ -117,8 +137,6 @@ const Addform = ({ onSubmit, pageTitle }) => {
                         <input type="file" name="file" id="file" value={formik.values.path} onChange={formik.handleChange} />
                     </div>
 
-                    <label htmlFor="comment"></label>
-                    <textarea name="comment" id="comment" cols="30" rows="10" value={formik.values.comment} onChange={formik.handleChange}></textarea>
 
                 </div>
             </form>

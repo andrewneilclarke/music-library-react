@@ -32310,7 +32310,8 @@ body {
   flex-direction: column;
 }
 
-.form input {
+.form input,
+.form textarea {
   letter-spacing: 1.5px;
   height: 2.5em;
   min-width: 20vw;
