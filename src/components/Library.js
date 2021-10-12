@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import note from '../img/musical-note.png'
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
     return (
