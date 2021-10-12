@@ -1,4 +1,7 @@
-const Library = ({ tracks, handleDelete }) => {
+import { Link } from 'react-router-dom'
+import note from '../img/musical-note.png'
+
+const Library = ({ tracks, handleDelete, handleEdit }) => {
     return (
         <div className="flex flex-col p-8">
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-black">
@@ -15,7 +18,7 @@ const Library = ({ tracks, handleDelete }) => {
                                 <p className="mt-1 text-gray-900 text-sm truncate">{item.artist}</p>
                                 <p className="mt-1 text-gray-500 text-sm truncate">{item.album}<br /><span>{item.year}</span></p>
                             </div>
-                            <img className="w-20 h-20 bg-gray-300 rounded-full flex-shrink-0" src={item.artwork} alt="artwork" />
+                            <img className="w-14 h-14 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
                         </div>
                         <div>
                             <div className="-mt-px flex divide-x divide-gray-200">
@@ -29,22 +32,28 @@ const Library = ({ tracks, handleDelete }) => {
                                         </svg>
                                     </div>
                                 </div>
-                                <div className="-ml-px w-0 flex-1 flex">
+
+                                <div
+                                    className="-ml-px w-0 flex-1 flex">
                                     <div
 
                                         className="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                        </svg>
+                                        <Link to={`/tracks/${item.id}`} onClick={handleEdit}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                            </svg>
+                                        </Link>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </li>
                 ))}
             </ul>
-        </div>
+        </div >
     )
 }
 

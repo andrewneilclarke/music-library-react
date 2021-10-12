@@ -1,7 +1,8 @@
-// import { useState } from "react"
 import { useFormik } from 'formik'
 
-const Addform = ({ onSubmit }) => {
+const Addform = ({ onSubmit, pageTitle }) => {
+
+
     let initialValues = {
         title: '',
         artist: '',
@@ -72,7 +73,7 @@ const Addform = ({ onSubmit }) => {
     return (
         <>
             <form className="form flex flex-col px-16 pl-28 max-w-lg" action="results.js" onSubmit={formik.handleSubmit}>
-                <h1 className="text-xl">Add Track</h1>
+                <h1 className="text-xl">{pageTitle}</h1>
                 <div className="grid grid-rows-2 m-2">
                     <label htmlFor="songtitle">Title</label>
                     <input type="text" placeholder="title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />

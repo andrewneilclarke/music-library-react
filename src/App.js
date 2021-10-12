@@ -2,18 +2,23 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import Nav from './components/Nav';
 import Library from './components/Library';
+import Editform from './components/Editform';
 import './dist/style.css'
 import Addform from './components/Addform';
 // import useFetch from './API/useFetch'
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid';
+import { useHistory } from 'react-router-dom'
 
 function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
   const [tracks, setTracks] = useState(JSON.parse(localStorage.getItem('tracks')) || []);
-  console.log(typeof JSON.parse(localStorage.getItem('tracks')))
-  console.log(typeof tracks)
-  console.log(Array.isArray(tracks))
+  const [edit, setEdit] = useState(true);
+  const history = useHistory();
+
+  // console.log(typeof JSON.parse(localStorage.getItem('tracks')))
+  // console.log(typeof tracks)
+  // console.log(Array.isArray(tracks))
 
   // console.log((localStorage['tracks']))
   // console.log(JSON.parse(localStorage['tracks']));
@@ -41,6 +46,17 @@ function App() {
     // console.log('Items ', items)
     // console.log('Tracks ', tracks)
   }
+
+  const handleEdit = (id) => {
+    // setEditItemID(id);
+    setEdit(true);
+    console.log('edit ', id, `tracks.id.${id}`)
+  }
+  const closeEdit = () => {
+    setEdit(false);
+    history.push('/');
+  }
+
   const onSubmit = (values) => {
     const newTrack = { ...values, id: uuid() };
     if (tracks) {
@@ -48,6 +64,7 @@ function App() {
       // newArray.push(tracks);
       // newArray.push(newTrack);
       setTracks(newArray)
+      history.push('/')
       // console.log(typeof newTrack)
       // console.log(typeof ([...tracks, newTrack]))
     }
@@ -56,21 +73,26 @@ function App() {
   useEffect(() => {
     localStorage["tracks"] = JSON.stringify(tracks);
   }, [tracks])
-  console.log(tracks)
+  // console.log(tracks)
   return (
     <Router>
       <Nav />
       <Switch>
         <Route exact path="/">
-          {tracks &&
-            <Library tracks={tracks} handleDelete={handleDelete} />
+          {tracks && <Library tracks={tracks} handleDelete={handleDelete} handleEdit={handleEdit} />
           }
+
+          {/* {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} />} */}
+          {/* {edit && <Editform tracks={tracks} editItemID={editItemID} onSubmit={onSubmit} />} */}
           {/* {loading && <h2>Loading</h2>}
           {error && <h2>Something went wrong</h2>} */}
         </Route>
+        <Route path="/tracks/:id">
+          {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} closeEdit={closeEdit} />}
+        </Route>
         <Route path="/add">
           {
-            <Addform onSubmit={onSubmit} />
+            <Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} />
           }
         </Route>
       </Switch>
