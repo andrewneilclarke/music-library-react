@@ -56,22 +56,20 @@ function App() {
   }
 
   const onSubmit = (values) => {
-    console.log(values)
     const newTrack = { ...values, id: uuid() };
     if (tracks) {
       let newArray = [...tracks, newTrack];
       // newArray.push(tracks);
       // newArray.push(newTrack);
-
-
       setTracks(newArray)
       history.push('/')
+      console.log(newTrack)
       // console.log(typeof newTrack)
       // console.log(typeof ([...tracks, newTrack]))
     }
   }
   // const updateTrack = () => {
-  //   console.log(formik.values)
+  //
   // }
 
   useEffect(() => {

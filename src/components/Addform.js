@@ -113,17 +113,22 @@ const Addform = ({ onSubmit, pageTitle }) => {
                         value={formik.values.review}
                         name="review" id="review"
                         onChange={(e, editor) => {
-                            formik.handleChange('review');
                             const data = editor.getData()
-                            // setTextBox(e.target.value)
+                            // console.log(data)
                             setTextBox(data)
-                            // formik.handleChange();
+                            // formik.handleChange(data);
+                            // formik.handleChange
+                            formik.values.review = parse(textBox)
                         }}
                         config={{
                             // plugins: [Paragraph, Bold, Italic, Essentials],
                             toolbar: ['bold', 'italic']
                         }}
                     />
+
+
+
+
                     {/* <textarea className="rounded-2xl" name="review" id="review" cols="1" rows="5" value={formik.values.review} onChange={formik.handleChange}></textarea> */}
 
                     <div>
