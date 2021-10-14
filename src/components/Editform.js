@@ -2,7 +2,7 @@ import { useFormik } from 'formik'
 import { useParams } from 'react-router'
 import { useState } from 'react';
 
-const Editform = ({ tracks, onSubmit, closeEdit, pageTitle, updateTrack }) => {
+const Editform = ({ tracks, onSubmit, handleChange, closeEdit, pageTitle }) => {
     const { id } = useParams();
     const track = tracks.filter((track) => track.id === id)
 
@@ -15,7 +15,8 @@ const Editform = ({ tracks, onSubmit, closeEdit, pageTitle, updateTrack }) => {
         location: track[0].location,
         path: track[0].path,
         comment: track[0].comment,
-        artwork: track[0].artwork
+        artwork: track[0].artwork,
+        id: id
     }
 
     const validate = values => {
@@ -36,6 +37,7 @@ const Editform = ({ tracks, onSubmit, closeEdit, pageTitle, updateTrack }) => {
     const formik = useFormik({
         initialValues,
         onSubmit,
+        handleChange,
         validate,
         enableReinitialize: true
     });
@@ -46,27 +48,26 @@ const Editform = ({ tracks, onSubmit, closeEdit, pageTitle, updateTrack }) => {
         years.push(i)
     }
 
-
     return (
         <>
 
-            <form className="form flex flex-col px-16 pl-28 max-w-lg" action="results.js" onSubmit={formik.handleSubmit}>
+            <form className="form flex flex-col px-16 pl-28 max-w-lg" action="results.js" onSubmit={formik.handleSubmit} onChange={formik.handleChange}>
                 <h1 className="text-xl">{pageTitle}</h1>
                 <div className="grid grid-rows-2 m-2">
                     <label htmlFor="songtitle">Title</label>
-                    <input type="text" placeholder="title" name="title" id="title" value={initialValues.title} onChange={formik.handleChange} />
+                    <input type="text" placeholder="title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
                     <label htmlFor="artist">Artist</label>
-                    <input type="text" placeholder="artist" name="artist" id="artist" value={initialValues.artist} onChange={formik.handleChange} />
+                    <input type="text" placeholder="artist" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} />
                     {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null}
 
                     <label htmlFor="album">Album</label>
-                    <input type="text" placeholder="album" name="album" id="album" value={initialValues.album} onChange={formik.handleChange} />
+                    <input type="text" placeholder="album" name="album" id="album" value={formik.values.album} onChange={formik.handleChange} />
                     {formik.errors.album ? <div className="error">{formik.errors.album}</div> : null}
 
                     <label htmlFor="genre">Genre</label>
-                    <select name="genre" id="genre" className="border-gray-600" value={initialValues.genre} onChange={formik.handleChange}>
+                    <select name="genre" id="genre" className="border-gray-600" value={formik.values.genre} onChange={formik.handleChange}>
                         <option value="Rock">Rock</option>
                         <option value="Pop">Pop</option>
                         <option value="Classical">Classical</option>
@@ -77,7 +78,7 @@ const Editform = ({ tracks, onSubmit, closeEdit, pageTitle, updateTrack }) => {
                     </select>
 
                     <label htmlFor="year">Year</label>
-                    <select name="year" id="year" value={initialValues.year} onChange={formik.handleChange} >
+                    <select name="year" id="year" value={formik.values.year} onChange={formik.handleChange} >
                         {years.map((year, index) => (
                             <option key={`year${index}`}>{year}</option>
                         ))}
@@ -91,14 +92,14 @@ const Editform = ({ tracks, onSubmit, closeEdit, pageTitle, updateTrack }) => {
                     </div>
                     <div className="fileurl">
                         <label htmlFor="location">File Location</label>
-                        <input type="url" name="location" id="location" value={initialValues.location} onChange={formik.handleChange} />
+                        <input type="url" name="location" id="location" value={formik.values.location} onChange={formik.handleChange} />
 
                         <label htmlFor="file">Locate</label>
-                        <input type="file" name="file" id="file" value={initialValues.path} onChange={formik.handleChange} />
+                        <input type="file" name="file" id="file" value={formik.values.path} onChange={formik.handleChange} />
                     </div>
 
                     <label htmlFor="comment"></label>
-                    <textarea name="comment" id="comment" cols="30" rows="10" value={initialValues.comment} onChange={formik.handleChange}></textarea>
+                    <textarea name="comment" id="comment" cols="30" rows="10" value={formik.values.comment} onChange={formik.handleChange}></textarea>
 
                 </div>
             </form>

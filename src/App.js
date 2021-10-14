@@ -56,17 +56,24 @@ function App() {
   }
 
   const onSubmit = (values) => {
-    const newTrack = { ...values, id: uuid() };
-    if (tracks) {
+    if (!values.id && tracks) {
+      const newTrack = { ...values, id: uuid() };
       let newArray = [...tracks, newTrack];
+      setTracks(newArray)
+      history.push('/')
+    } else if (tracks) {
+      const updatedTrack = values
+
+      let newArray = [...tracks.filter((track => track.id !== values.id)), updatedTrack]
+      console.log(newArray)
+      setTracks(newArray)
+      history.push('/')
+
       // newArray.push(tracks);
       // newArray.push(newTrack);
 
-
-      setTracks(newArray)
-      history.push('/')
       // console.log(typeof newTrack)
-      // console.log(typeof ([...tracks, newTrack]))
+      // console.log(typeof ([...tracks, newTrack])) 
     }
   }
   // const updateTrack = () => {
