@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import Nav from './components/Nav';
 import Library from './components/Library';
@@ -8,7 +8,6 @@ import Addform from './components/Addform';
 // import useFetch from './API/useFetch'
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid';
-import { useHistory } from 'react-router-dom'
 
 function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
@@ -48,9 +47,8 @@ function App() {
   }
 
   const handleEdit = (id) => {
-    // setEditItemID(id);
     setEdit(true);
-    console.log('edit ', id, `tracks.id.${id}`)
+    console.log('edit ', id)
   }
   const closeEdit = () => {
     setEdit(false);
@@ -58,24 +56,36 @@ function App() {
   }
 
   const onSubmit = (values) => {
-    const newTrack = { ...values, id: uuid() };
-    if (tracks) {
+    if (!values.id && tracks) {
+      const newTrack = { ...values, id: uuid() };
       let newArray = [...tracks, newTrack];
-      // newArray.push(tracks);
-      // newArray.push(newTrack);
       setTracks(newArray)
       history.push('/')
+    } else if (tracks) {
+      const updatedTrack = values
+
+      let newArray = [...tracks.filter((track => track.id !== values.id)), updatedTrack]
+      console.log(newArray)
+      setTracks(newArray)
+      history.push('/')
+
+      // newArray.push(tracks);
+      // newArray.push(newTrack);
+
       // console.log(typeof newTrack)
-      // console.log(typeof ([...tracks, newTrack]))
+      // console.log(typeof ([...tracks, newTrack])) 
     }
   }
+  // const updateTrack = () => {
+  //   console.log(formik.values)
+  // }
 
   useEffect(() => {
     localStorage["tracks"] = JSON.stringify(tracks);
   }, [tracks])
-  // console.log(tracks)
+
   return (
-    <Router>
+    <>
       <Nav />
       <Switch>
         <Route exact path="/">
@@ -88,7 +98,7 @@ function App() {
           {error && <h2>Something went wrong</h2>} */}
         </Route>
         <Route path="/tracks/:id">
-          {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} closeEdit={closeEdit} />}
+          {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} closeEdit={closeEdit} onSubmit={onSubmit} />}
         </Route>
         <Route path="/add">
           {
@@ -96,7 +106,7 @@ function App() {
           }
         </Route>
       </Switch>
-    </Router>
+    </>
   );
 }
 
