@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import parse from 'html-react-parser'
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
     return (
@@ -15,7 +16,8 @@ const Library = ({ tracks, handleDelete, handleEdit }) => {
                                     </span>
                                 </div>
                                 <p className="mt-1 text-gray-900 text-sm truncate">{item.artist}</p>
-                                <p className="mt-1 text-gray-500 text-sm truncate">{item.review}<br /><span>{item.year}</span></p>
+                                <p className="mt-1 text-gray-500 text-sm truncate">{item.album}<br /><span>{item.year}</span></p>
+                                <div className="font-sans">{item.review}</div>
                             </div>
                             <img className="w-14 h-14 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
                         </div>

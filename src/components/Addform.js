@@ -106,7 +106,7 @@ const Addform = ({ onSubmit, pageTitle }) => {
                     {formik.errors.year ? <div className="error">{formik.errors.year}</div> : null}
 
                     <label htmlFor="review">Review</label>
-                    {parse(textBox)}
+
                     <CKEditor
                         editor={ClassicEditor}
                         data={textBox}
@@ -114,20 +114,13 @@ const Addform = ({ onSubmit, pageTitle }) => {
                         name="review" id="review"
                         onChange={(e, editor) => {
                             const data = editor.getData()
-                            // console.log(data)
-                            setTextBox(data)
-                            // formik.handleChange(data);
-                            // formik.handleChange
-                            formik.values.review = parse(textBox)
+                            formik.values.review = parse(data);
                         }}
                         config={{
                             // plugins: [Paragraph, Bold, Italic, Essentials],
                             toolbar: ['bold', 'italic']
                         }}
                     />
-
-
-
 
                     {/* <textarea className="rounded-2xl" name="review" id="review" cols="1" rows="5" value={formik.values.review} onChange={formik.handleChange}></textarea> */}
 

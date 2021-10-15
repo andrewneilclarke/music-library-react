@@ -74,6 +74,7 @@ function App() {
 
   useEffect(() => {
     localStorage["tracks"] = JSON.stringify(tracks);
+    console.log(tracks)
   }, [tracks])
 
   return (
