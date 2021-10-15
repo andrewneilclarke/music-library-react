@@ -15,7 +15,6 @@ function App() {
   const [edit, setEdit] = useState(true);
   const history = useHistory();
 
-
   const handleDelete = async (id) => {
     let getLocalStorage = JSON.parse(localStorage.getItem('tracks'));
     //remove the item in storage
@@ -40,7 +39,7 @@ function App() {
 
   const handleEdit = (id) => {
     setEdit(true);
-    console.log('edit ', id)
+    // console.log('edit ', id)
   }
   const closeEdit = () => {
     setEdit(false);
@@ -66,7 +65,7 @@ function App() {
 
   useEffect(() => {
     localStorage["tracks"] = JSON.stringify(tracks);
-    console.log(tracks)
+    // console.log(tracks)
   }, [tracks])
 
   return (

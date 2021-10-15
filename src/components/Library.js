@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
-import { parse } from 'uuid';
+import parse from 'html-react-parser';
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
-    // console.log(tracks[2].review.props.children)
+    // console.log(tracks)
+    // tracks.map(track => track)
     return (
         <div className="flex flex-col p-8">
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-black">
-                {parse(tracks[0].review)}
                 {tracks.map((item) => (
                     <li key={item.id} className="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
                         <div className="w-full flex items-center justify-between p-6 space-x-6">
@@ -19,6 +19,7 @@ const Library = ({ tracks, handleDelete, handleEdit }) => {
                                 </div>
                                 <p className="mt-1 text-gray-900 text-sm truncate">{item.artist}</p>
                                 <p className="mt-1 text-gray-500 text-sm truncate">{item.album}<br /><span>{item.year}</span></p>
+                                {parse(item.review)}
                                 {/* <div className="font-sans" key={`${item.id}${item.title}`}>{item.review.props.children}</div> */}
                             </div>
                             {/* <div>{parse(item.review)}</div> */}

@@ -5,6 +5,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 // import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 // import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 // import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+// import Indent from '@ckeditor/ckeditor5-indent/src/indent'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import parse from 'html-react-parser'
 
@@ -70,9 +71,9 @@ const Addform = ({ onSubmit, pageTitle }) => {
 
     return (
         <>
-            <form className="form flex flex-col px-16 pl-28 max-w-2xl" action="results.js" onSubmit={formik.handleSubmit}>
+            <form className="form flex flex-col px-16 pl-28 w-screen" action="results.js" onSubmit={formik.handleSubmit}>
                 <h1 className="text-xl">{pageTitle}</h1>
-                <div className="grid grid-rows-2 m-2">
+                <div className="grid grid-rows-2 m-2 text-base">
                     <label htmlFor="songtitle">Title</label>
                     <input type="text" placeholder="title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
@@ -114,17 +115,25 @@ const Addform = ({ onSubmit, pageTitle }) => {
                         name="review" id="review"
                         onChange={(e, editor) => {
                             const data = editor.getData()
-                            formik.values.review = parse(data);
+                            formik.values.review = data;
                         }}
-                        config={{
-                            // plugins: [Paragraph, Bold, Italic, Essentials],
-                            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
-                        }}
+                    // config={{
+                    // removePlugins: ['link', 'heading']
+                    // plugins: [Indent],
+                    // toolbar: ['heading', '|', 'indent', 'outdent', 'bold', 'italic'],
+                    // heading: {
+                    //     options: [
+                    //         { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    //         { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    //         { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                    //     ]
+                    // }
+                    // }}
                     />
 
                     {/* <textarea className="rounded-2xl" name="review" id="review" cols="1" rows="5" value={formik.values.review} onChange={formik.handleChange}></textarea> */}
 
-                    <div>
+                    < div >
                         <button type="submit" className="transform ease-in duration-100 hover:scale-105">Save</button>
                     </div>
                     <div className="fileurl">
