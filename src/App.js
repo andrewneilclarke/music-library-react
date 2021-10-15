@@ -15,14 +15,6 @@ function App() {
   const [edit, setEdit] = useState(true);
   const history = useHistory();
 
-  // console.log(typeof JSON.parse(localStorage.getItem('tracks')))
-  // console.log(typeof tracks)
-  // console.log(Array.isArray(tracks))
-
-  // console.log((localStorage['tracks']))
-  // console.log(JSON.parse(localStorage['tracks']));
-  // console.log(JSON.stringify([]));
-  // console.log(JSON.stringify(tracks))
 
   const handleDelete = async (id) => {
     let getLocalStorage = JSON.parse(localStorage.getItem('tracks'));

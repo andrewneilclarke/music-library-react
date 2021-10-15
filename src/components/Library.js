@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
-import parse from 'html-react-parser'
+import { parse } from 'uuid';
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
+    // console.log(tracks[2].review.props.children)
     return (
         <div className="flex flex-col p-8">
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-black">
+                {parse(tracks[0].review)}
                 {tracks.map((item) => (
                     <li key={item.id} className="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
                         <div className="w-full flex items-center justify-between p-6 space-x-6">
@@ -17,8 +19,9 @@ const Library = ({ tracks, handleDelete, handleEdit }) => {
                                 </div>
                                 <p className="mt-1 text-gray-900 text-sm truncate">{item.artist}</p>
                                 <p className="mt-1 text-gray-500 text-sm truncate">{item.album}<br /><span>{item.year}</span></p>
-                                <div className="font-sans">{item.review}</div>
+                                {/* <div className="font-sans" key={`${item.id}${item.title}`}>{item.review.props.children}</div> */}
                             </div>
+                            {/* <div>{parse(item.review)}</div> */}
                             <img className="w-14 h-14 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
                         </div>
                         <div>

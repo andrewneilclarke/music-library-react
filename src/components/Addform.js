@@ -70,7 +70,7 @@ const Addform = ({ onSubmit, pageTitle }) => {
 
     return (
         <>
-            <form className="form flex flex-col px-16 pl-28 max-w-lg" action="results.js" onSubmit={formik.handleSubmit}>
+            <form className="form flex flex-col px-16 pl-28 max-w-2xl" action="results.js" onSubmit={formik.handleSubmit}>
                 <h1 className="text-xl">{pageTitle}</h1>
                 <div className="grid grid-rows-2 m-2">
                     <label htmlFor="songtitle">Title</label>
@@ -118,7 +118,7 @@ const Addform = ({ onSubmit, pageTitle }) => {
                         }}
                         config={{
                             // plugins: [Paragraph, Bold, Italic, Essentials],
-                            toolbar: ['bold', 'italic']
+                            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
                         }}
                     />
 
