@@ -58,13 +58,13 @@ function App() {
   const onSubmit = (values) => {
     if (!values.id && tracks) {
       const newTrack = { ...values, id: uuid() };
-      let newArray = [...tracks, newTrack];
+      let newArray = [newTrack, ...tracks];
       setTracks(newArray)
       history.push('/')
     } else if (tracks) {
       const updatedTrack = values
 
-      let newArray = [...tracks.filter((track => track.id !== values.id)), updatedTrack]
+      let newArray = [updatedTrack, ...tracks.filter((track => track.id !== values.id))]
       console.log(newArray)
       setTracks(newArray)
       history.push('/')
