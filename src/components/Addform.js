@@ -1,12 +1,11 @@
 import { useFormik } from 'formik'
-import { useState } from 'react'
 
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 
+// console.log(ClassicEditor.builtinPlugins.map(plugin => plugin.pluginName));
 
 const Addform = ({ onSubmit, pageTitle }) => {
-    const [textBox, setTextBox] = useState('')
 
     let initialValues = {
         title: '',
@@ -67,7 +66,7 @@ const Addform = ({ onSubmit, pageTitle }) => {
 
     return (
         <>
-            <form className="form flex flex-col px-16 pl-28 w-screen" action="results.js" onSubmit={formik.handleSubmit}>
+            <form className="form flex flex-col px-16 pl-28 w-1/2" action="results.js" onSubmit={formik.handleSubmit}>
                 <h1 className="text-xl">{pageTitle}</h1>
                 <div className="grid grid-rows-2 m-2 text-base">
                     <label htmlFor="songtitle">Title</label>
@@ -106,7 +105,6 @@ const Addform = ({ onSubmit, pageTitle }) => {
 
                     <CKEditor
                         editor={ClassicEditor}
-                        data={textBox}
                         value={formik.values.review}
                         name="review" id="review"
                         onChange={(e, editor) => {
