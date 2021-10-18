@@ -2,7 +2,6 @@ import { useFormik } from 'formik'
 
 const Addform = ({ onSubmit, pageTitle }) => {
 
-
     let initialValues = {
         title: '',
         artist: '',
@@ -42,7 +41,7 @@ const Addform = ({ onSubmit, pageTitle }) => {
     //         )
     // }
 
-
+    // validate first 3 fields
     const validate = values => {
         let errors = {}
         if (!values.title) {
@@ -64,6 +63,7 @@ const Addform = ({ onSubmit, pageTitle }) => {
         validate
     });
 
+    // create year selections
     const years = [];
     let year = new Date().getFullYear();
     for (let i = year; i > 1899; i--) {
