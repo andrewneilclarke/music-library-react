@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import parse from 'html-react-parser';
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
-    // console.log(tracks)
+    // console.log(tracks[0].review)
     // tracks.map(track => track)
     return (
         <div className="flex flex-col p-8">
@@ -23,7 +23,7 @@ const Library = ({ tracks, handleDelete, handleEdit }) => {
                                 {/* <div className="font-sans" key={`${item.id}${item.title}`}>{item.review.props.children}</div> */}
                             </div>
                             {/* <div>{parse(item.review)}</div> */}
-                            <img className="w-14 h-14 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
+                            <img className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
                         </div>
                         <div>
                             <div className="-mt-px flex divide-x divide-gray-200">

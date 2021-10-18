@@ -1,13 +1,9 @@
 import { useFormik } from 'formik'
 import { useState } from 'react'
+
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
-// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
-// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
-// import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
-// import Indent from '@ckeditor/ckeditor5-indent/src/indent'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
-import parse from 'html-react-parser'
+
 
 const Addform = ({ onSubmit, pageTitle }) => {
     const [textBox, setTextBox] = useState('')
@@ -117,23 +113,11 @@ const Addform = ({ onSubmit, pageTitle }) => {
                             const data = editor.getData()
                             formik.values.review = data;
                         }}
-                    // config={{
-                    // removePlugins: ['link', 'heading']
-                    // plugins: [Indent],
-                    // toolbar: ['heading', '|', 'indent', 'outdent', 'bold', 'italic'],
-                    // heading: {
-                    //     options: [
-                    //         { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                    //         { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                    //         { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-                    //     ]
-                    // }
-                    // }}
                     />
 
                     {/* <textarea className="rounded-2xl" name="review" id="review" cols="1" rows="5" value={formik.values.review} onChange={formik.handleChange}></textarea> */}
 
-                    < div >
+                    <div>
                         <button type="submit" className="transform ease-in duration-100 hover:scale-105">Save</button>
                     </div>
                     <div className="fileurl">

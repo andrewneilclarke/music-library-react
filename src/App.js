@@ -11,17 +11,18 @@ import { v4 as uuid } from 'uuid';
 
 function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
-  const [tracks, setTracks] = useState(JSON.parse(localStorage.getItem('tracks')) || []);
+  const [tracks, setTracks] = useState([]);
   const [edit, setEdit] = useState(true);
   const history = useHistory();
 
   const handleDelete = async (id) => {
+    // get the stored items
     let getLocalStorage = JSON.parse(localStorage.getItem('tracks'));
     //remove the item in storage
     let newStorage = getLocalStorage.filter((item) => item.id !== id);
     //assign array back to LocalStorage
     localStorage.setItem('tracks', JSON.stringify(newStorage));
-    // remove item from state
+    // remove item from local state
     setTracks(tracks.filter(track => track.id !== id))
 
     // await fetch(`http://localhost:8000/tracks/${id}`,
@@ -37,35 +38,51 @@ function App() {
     // console.log('Tracks ', tracks)
   }
 
+  // open edit page
   const handleEdit = (id) => {
     setEdit(true);
-    // console.log('edit ', id)
+    console.log('edit ', id)
   }
+
+  // finish edit
   const closeEdit = () => {
     setEdit(false);
     history.push('/');
   }
 
   const onSubmit = (values) => {
-    const newTrack = { ...values, id: uuid() };
-    if (tracks) {
-      let newArray = [...tracks, newTrack];
-      // newArray.push(tracks);
-      // newArray.push(newTrack);
+    if (!values.id && tracks) {
+      const newTrack = { ...values, id: uuid() };
+      let newArray = [newTrack, ...tracks];
       setTracks(newArray)
       history.push('/')
-      console.log(newTrack)
+    } else if (tracks) {
+      const updatedTrack = { ...values }
+      let newArray = [updatedTrack, ...tracks.filter((track => track.id !== values.id))]
+      console.log(newArray)
+      setTracks(newArray)
+      history.push('/')
+
+      // newArray.push(tracks);
+      // newArray.push(newTrack);
+
       // console.log(typeof newTrack)
-      // console.log(typeof ([...tracks, newTrack]))
+      // console.log(typeof ([...tracks, newTrack])) 
     }
   }
   // const updateTrack = () => {
-  //
+  //   console.log(formik.values)
   // }
 
+  // on page load, get tracks from local storagee
   useEffect(() => {
-    localStorage["tracks"] = JSON.stringify(tracks);
-    // console.log(tracks)
+    const storedTracks = JSON.parse(localStorage.getItem('tracks'));
+    storedTracks && setTracks(storedTracks)
+  }, [])
+
+  // when tracks changes, save to local storage
+  useEffect(() => {
+    localStorage.setItem(["tracks"], JSON.stringify(tracks))
   }, [tracks])
 
   return (
@@ -73,11 +90,8 @@ function App() {
       <Nav />
       <Switch>
         <Route exact path="/">
-          {tracks && <Library tracks={tracks} handleDelete={handleDelete} handleEdit={handleEdit} />
-          }
+          {tracks && <Library tracks={tracks} handleDelete={handleDelete} handleEdit={handleEdit} />}
 
-          {/* {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} />} */}
-          {/* {edit && <Editform tracks={tracks} editItemID={editItemID} onSubmit={onSubmit} />} */}
           {/* {loading && <h2>Loading</h2>}
           {error && <h2>Something went wrong</h2>} */}
         </Route>
@@ -85,9 +99,7 @@ function App() {
           {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} closeEdit={closeEdit} onSubmit={onSubmit} />}
         </Route>
         <Route path="/add">
-          {
-            <Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} />
-          }
+          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} />}
         </Route>
       </Switch>
     </>
