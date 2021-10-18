@@ -62,12 +62,6 @@ function App() {
       console.log(newArray)
       setTracks(newArray)
       history.push('/')
-
-      // newArray.push(tracks);
-      // newArray.push(newTrack);
-
-      // console.log(typeof newTrack)
-      // console.log(typeof ([...tracks, newTrack])) 
     }
   }
   // const updateTrack = () => {
