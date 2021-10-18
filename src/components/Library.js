@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import parse from 'html-react-parser';
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
+    // console.log(tracks[0].review)
+    // tracks.map(track => track)
     return (
         <div className="flex flex-col p-8">
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-black">
@@ -16,8 +19,11 @@ const Library = ({ tracks, handleDelete, handleEdit }) => {
                                 </div>
                                 <p className="mt-1 text-gray-900 text-sm truncate">{item.artist}</p>
                                 <p className="mt-1 text-gray-500 text-sm truncate">{item.album}<br /><span>{item.year}</span></p>
+                                {parse(item.review)}
+                                {/* <div className="font-sans" key={`${item.id}${item.title}`}>{item.review.props.children}</div> */}
                             </div>
-                            <img className="w-14 h-14 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
+                            {/* <div>{parse(item.review)}</div> */}
+                            <img className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0" src="https://cdn-icons-png.flaticon.com/512/1384/1384061.png" alt="artwork" />
                         </div>
                         <div>
                             <div className="-mt-px flex divide-x divide-gray-200">

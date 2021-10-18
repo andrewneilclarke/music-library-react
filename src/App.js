@@ -51,34 +51,19 @@ function App() {
   }
 
   const onSubmit = (values) => {
-<<<<<<< HEAD
     if (!values.id && tracks) {
       const newTrack = { ...values, id: uuid() };
       let newArray = [newTrack, ...tracks];
       setTracks(newArray)
       history.push('/')
     } else if (tracks) {
-      const updatedTrack = values
-
+      const updatedTrack = { ...values }
       let newArray = [updatedTrack, ...tracks.filter((track => track.id !== values.id))]
-      console.log(newArray)
       setTracks(newArray)
       history.push('/')
-
-      // newArray.push(tracks);
-      // newArray.push(newTrack);
-
-      // console.log(typeof newTrack)
-      // console.log(typeof ([...tracks, newTrack])) 
-=======
-    const newTrack = { ...values, id: uuid() };
-    if (tracks) {
-      let newArray = [...tracks, newTrack];
-      setTracks(newArray)
-      history.push('/')
->>>>>>> hotfix/tidyup
     }
   }
+
   // const updateTrack = () => {
   //   console.log(formik.values)
   // }
