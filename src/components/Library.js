@@ -19,7 +19,7 @@ const Library = ({ tracks, handleDelete, handleEdit }) => {
                                 </div>
                                 <p className="mt-1 text-gray-900 text-sm truncate">{item.artist}</p>
                                 <p className="mt-1 text-gray-500 text-sm truncate">{item.album}<br /><span>{item.year}</span></p>
-                                {parse(item.review)}
+                                {item.review && parse(item.review)}
                                 {/* <div className="font-sans" key={`${item.id}${item.title}`}>{item.review.props.children}</div> */}
                             </div>
                             {/* <div>{parse(item.review)}</div> */}
