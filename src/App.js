@@ -71,24 +71,23 @@ function App() {
   // }
 
 
-  // get artists for dropdown
-  const getArtists = () => {
-    const artists = tracks.map(track => track.artist);
-    const artistsSet = [...new Set(artists)]
-    const list = artistsSet.map(a => { return { value: a, label: a } })
-    setArtists(list);
-    console.log(artistsSet)
-  }
-
   // on page load, get tracks from local storage
   useEffect(() => {
     const storedTracks = JSON.parse(localStorage.getItem('tracks'));
     storedTracks && setTracks(storedTracks)
   }, [])
 
-  // when tracks change, save to local storage and update artists list
   useEffect(() => {
+    // when tracks change, save to local storage and update artists list
     localStorage.setItem(["tracks"], JSON.stringify(tracks))
+    // get artists for dropdown
+    const getArtists = () => {
+      const artists = tracks.map(track => track.artist);
+      const artistsSet = [...new Set(artists)]
+      const list = artistsSet.map(a => { return { value: a, label: a } })
+      setArtists(list);
+      console.log(artistsSet)
+    }
     getArtists()
   }, [tracks])
 

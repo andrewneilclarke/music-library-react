@@ -1,8 +1,5 @@
 import { useFormik } from 'formik'
-import { useState } from 'react'
-import Select from 'react-select'
 import CustomSelect from './CustomSelect'
-import makeAnimated from 'react-select/animated'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 
