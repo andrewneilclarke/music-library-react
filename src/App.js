@@ -51,13 +51,6 @@ function App() {
   }
 
   const onSubmit = (values) => {
-<<<<<<< HEAD
-    const newTrack = { ...values, id: uuid() };
-    if (tracks) {
-      let newArray = [...tracks, newTrack];
-      setTracks(newArray)
-      history.push('/')
-=======
     if (!values.id && tracks) {
       const newTrack = { ...values, id: uuid() };
       let newArray = [newTrack, ...tracks];
@@ -76,7 +69,6 @@ function App() {
 
       // console.log(typeof newTrack)
       // console.log(typeof ([...tracks, newTrack])) 
->>>>>>> 7898131100ee9c28b76815ee9cb2222235eeb47e
     }
   }
   // const updateTrack = () => {
