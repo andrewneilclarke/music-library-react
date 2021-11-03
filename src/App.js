@@ -75,14 +75,14 @@ function App() {
   const getArtists = () => {
     const artists = tracks.map(track => track.artist);
     const artistsSet = [...new Set(artists)]
-    const list = artists.map(a => { return { value: a, label: a } })
+    const list = artistsSet.map(a => { return { value: a, label: a } })
     setArtists(list);
-    console.log(artists)
+    console.log(artistsSet)
   }
   // on page load get artists list
-  useEffect(() => {
-    tracks && getArtists();
-  }, [tracks])
+  // useEffect(() => {
+  //   tracks && getArtists();
+  // }, [tracks])
 
   // on page load, get tracks from local storage
   useEffect(() => {
@@ -90,9 +90,10 @@ function App() {
     storedTracks && setTracks(storedTracks)
   }, [])
 
-  // when tracks changes, save to local storage
+  // when tracks changes, save to local storage and update artists list
   useEffect(() => {
     localStorage.setItem(["tracks"], JSON.stringify(tracks))
+    getArtists()
   }, [tracks])
 
   return (

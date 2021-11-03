@@ -1,27 +1,27 @@
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import Select from 'react-select'
+import CustomSelect from './CustomSelect'
 import makeAnimated from 'react-select/animated'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 
-const Artists = [
-    {
-        value: 'the monkeys',
-        label: '- The Monkeys'
-    },
-    {
-        value: 'the bees',
-        label: '- The Bees'
-    },
-    {
-        value: 'the animals',
-        label: '- The Animals'
-    }
-]
+// const Artists = [
+//     {
+//         value: 'the monkeys',
+//         label: '- The Monkeys'
+//     },
+//     {
+//         value: 'the bees',
+//         label: '- The Bees'
+//     },
+//     {
+//         value: 'the animals',
+//         label: '- The Animals'
+//     }
+// ]
 
 const Addform = ({ onSubmit, pageTitle, artists }) => {
-    const [dropdownArtists, setDropdownArtists] = useState([])
 
     let initialValues = {
         title: '',
@@ -65,26 +65,31 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
         years.push(i)
     }
 
-    // get artists for dropdown
-    // const artists = tracks.map(track => track.artist);
-    // const list = artists.map(a => { return { value: a, label: a } })
-    // list && console.log(list)
+
 
     return (
         <>
             <form className="form flex flex-col px-16 pl-28 w-1/2" action="results.js" onSubmit={formik.handleSubmit}>
                 <h1 className="text-xl">{pageTitle}</h1>
                 <div className="grid grid-rows-2 m-2 text-base">
-                    <label htmlFor="songtitle">Title</label>
-                    <input type="text" placeholder="title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
+                    <input type="text" placeholder="Title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
-                    <label htmlFor="artist">Artist</label>
-                    <input type="text" placeholder="artist" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} />
-                    {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null}
-                    <Select options={artists} className="mt-3 font-weight-bold" placeholder="Select Artist" isSearchable autoFocus />
+                    {/* <input type="text" placeholder="artist" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} /> */}
 
-                    <label htmlFor="album">Album</label>
+                    {/* <Select options={artists} className="mt-3 font-weight-bold" placeholder="Artist" isSearchable autoFocus onChange={formik.handleChange} value={formik.values.artist} name="artist" id="artist" type="text" />
+                    {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null} */}
+
+                    <CustomSelect
+                        onChange={value => formik.setFieldValue('artist', value.value)}
+                        value={formik.values.artist}
+                        options={artists}
+                    />
+                    {formik.errors.artist ? <div className='error'>{formik.errors.job}</div> : null}
+
+                    {/* <Select options={artists} className="mt-3 font-weight-bold" placeholder="Artist" isSearchable autoFocus value={defaultArtistValue(artists, value)} onChange={ value => onChange(value)} name="artist" id="artist" type="text" />
+                    {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null} */}
+
                     <input type="text" placeholder="album" name="album" id="album" value={formik.values.album} onChange={formik.handleChange} />
                     {formik.errors.album ? <div className="error">{formik.errors.album}</div> : null}
 
