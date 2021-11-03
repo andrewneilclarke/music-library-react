@@ -71,29 +71,24 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
         <>
             <form className="form flex flex-col px-16 pl-28 w-1/2" action="results.js" onSubmit={formik.handleSubmit}>
                 <h1 className="text-xl">{pageTitle}</h1>
-                <div className="grid grid-rows-2 m-2 text-base">
+                <div className="grid grid-rows-2 m-1 text-base">
+                    <label>Title</label>
                     <input type="text" placeholder="Title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
                     {/* <input type="text" placeholder="artist" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} /> */}
-
-                    {/* <Select options={artists} className="mt-3 font-weight-bold" placeholder="Artist" isSearchable autoFocus onChange={formik.handleChange} value={formik.values.artist} name="artist" id="artist" type="text" />
-                    {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null} */}
-
+                    <label>Artist</label>
                     <CustomSelect
                         onChange={value => formik.setFieldValue('artist', value.value)}
                         value={formik.values.artist}
                         options={artists}
                     />
-                    {formik.errors.artist ? <div className='error'>{formik.errors.job}</div> : null}
-
-                    {/* <Select options={artists} className="mt-3 font-weight-bold" placeholder="Artist" isSearchable autoFocus value={defaultArtistValue(artists, value)} onChange={ value => onChange(value)} name="artist" id="artist" type="text" />
-                    {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null} */}
-
+                    {formik.errors.artist ? <div className='error'>{formik.errors.artist}</div> : null}
+                    <label>Album</label>
                     <input type="text" placeholder="album" name="album" id="album" value={formik.values.album} onChange={formik.handleChange} />
                     {formik.errors.album ? <div className="error">{formik.errors.album}</div> : null}
 
-                    <label htmlFor="genre">Genre</label>
+                    <label>Genre</label>
                     <select name="genre" id="genre" className="border-gray-600" value={formik.values.genre} onChange={formik.handleChange}>
                         <option value="Rock">Rock</option>
                         <option value="Pop">Pop</option>
@@ -104,7 +99,7 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
                         <option value="Other">Other</option>
                     </select>
 
-                    <label htmlFor="year">Year</label>
+                    <label>Year</label>
                     <select name="year" id="year" value={formik.values.year} onChange={formik.handleChange} >
                         {years.map((year, index) => (
                             <option key={`year${index}`}>{year}</option>
@@ -113,7 +108,7 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
 
                     {formik.errors.year ? <div className="error">{formik.errors.year}</div> : null}
 
-                    <label htmlFor="review">Review</label>
+                    <label>Review</label>
 
                     <CKEditor
                         editor={ClassicEditor}
@@ -131,10 +126,10 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
                         <button type="submit" className="transform ease-in duration-100 hover:scale-105">Save</button>
                     </div>
                     <div className="fileurl">
-                        <label htmlFor="location">File Location</label>
+                        <label>File Location</label>
                         <input type="url" name="location" id="location" value={formik.values.location} onChange={formik.handleChange} />
 
-                        <label htmlFor="file">Locate</label>
+                        <label>Locate</label>
                         <input type="file" name="file" id="file" value={formik.values.path} onChange={formik.handleChange} />
                     </div>
 

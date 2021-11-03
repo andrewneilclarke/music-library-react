@@ -79,10 +79,6 @@ function App() {
     setArtists(list);
     console.log(artistsSet)
   }
-  // on page load get artists list
-  // useEffect(() => {
-  //   tracks && getArtists();
-  // }, [tracks])
 
   // on page load, get tracks from local storage
   useEffect(() => {
@@ -90,7 +86,7 @@ function App() {
     storedTracks && setTracks(storedTracks)
   }, [])
 
-  // when tracks changes, save to local storage and update artists list
+  // when tracks change, save to local storage and update artists list
   useEffect(() => {
     localStorage.setItem(["tracks"], JSON.stringify(tracks))
     getArtists()
