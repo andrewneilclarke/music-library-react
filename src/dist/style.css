@@ -32242,11 +32242,10 @@ video {
   content: none;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap'); */
 
 body {
-  font-family: 'Lato', sans-serif;
-  font-weight: bold;
+  font-family: 'Verdana', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -32310,7 +32309,8 @@ body {
   flex-direction: column;
 }
 
-.form input {
+.form input,
+.form textarea {
   letter-spacing: 1.5px;
   height: 2.5em;
   min-width: 20vw;

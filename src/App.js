@@ -13,8 +13,10 @@ function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
   const [tracks, setTracks] = useState([]);
   const [edit, setEdit] = useState(true);
-  const history = useHistory();
+  const [artists, setArtists] = useState([])
 
+  const history = useHistory();
+  // artists && console.log(artists)
   const handleDelete = async (id) => {
     // get the stored items
     let getLocalStorage = JSON.parse(localStorage.getItem('tracks'));
@@ -57,10 +59,8 @@ function App() {
       setTracks(newArray)
       history.push('/')
     } else if (tracks) {
-      const updatedTrack = values
-
+      const updatedTrack = { ...values }
       let newArray = [updatedTrack, ...tracks.filter((track => track.id !== values.id))]
-      console.log(newArray)
       setTracks(newArray)
       history.push('/')
 
@@ -71,19 +71,30 @@ function App() {
       // console.log(typeof ([...tracks, newTrack])) 
     }
   }
+
   // const updateTrack = () => {
   //   console.log(formik.values)
   // }
 
-  // on page load, get tracks from local storagee
+
+  // on page load, get tracks from local storage
   useEffect(() => {
     const storedTracks = JSON.parse(localStorage.getItem('tracks'));
     storedTracks && setTracks(storedTracks)
   }, [])
 
-  // when tracks changes, save to local storage
   useEffect(() => {
+    // when tracks change, save to local storage and update artists list
     localStorage.setItem(["tracks"], JSON.stringify(tracks))
+    // get artists for dropdown
+    const getArtists = () => {
+      const artists = tracks.map(track => track.artist);
+      const artistsSet = [...new Set(artists)]
+      const list = artistsSet.map(a => { return { value: a, label: a } })
+      setArtists(list);
+      console.log(artistsSet)
+    }
+    getArtists()
   }, [tracks])
 
   return (
@@ -100,7 +111,7 @@ function App() {
           {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} closeEdit={closeEdit} onSubmit={onSubmit} />}
         </Route>
         <Route path="/add">
-          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} />}
+          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} tracks={tracks} artists={artists} />}
         </Route>
       </Switch>
     </>
