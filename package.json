@@ -1,6 +1,6 @@
 {
   "name": "music-library-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^30.0.0",
