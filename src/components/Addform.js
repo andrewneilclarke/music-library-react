@@ -73,8 +73,8 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
                     <input type="text" placeholder="Title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
-                    {/* <input type="text" placeholder="artist" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} /> */}
                     <label>Artist</label>
+                    <input type="text" placeholder="Add new" className="mb-3" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} />
                     <CustomSelect
                         onChange={value => formik.setFieldValue('artist', value.value)}
                         value={formik.values.artist}

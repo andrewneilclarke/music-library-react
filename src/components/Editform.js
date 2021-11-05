@@ -59,6 +59,7 @@ const Editform = ({ tracks, artists, onSubmit, handleChange, closeEdit, pageTitl
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
                     <label>Artist</label>
+                    <input type="text" placeholder="Add new" className="mb-3" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} />
                     <CustomSelect
                         onChange={value => formik.setFieldValue('artist', value.value)}
                         value={formik.values.artist}
