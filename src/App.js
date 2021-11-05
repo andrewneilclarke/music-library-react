@@ -102,7 +102,7 @@ function App() {
           {error && <h2>Something went wrong</h2>} */}
         </Route>
         <Route path="/tracks/:id">
-          {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} closeEdit={closeEdit} onSubmit={onSubmit} />}
+          {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} artists={artists} closeEdit={closeEdit} onSubmit={onSubmit} />}
         </Route>
         <Route path="/add">
           {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} tracks={tracks} artists={artists} />}
