@@ -87,6 +87,7 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
 
                     <label>Genre</label>
                     <select name="genre" id="genre" className="border-gray-600" value={formik.values.genre} onChange={formik.handleChange}>
+                        <option value=""></option>
                         <option value="Rock">Rock</option>
                         <option value="Pop">Pop</option>
                         <option value="Classical">Classical</option>
