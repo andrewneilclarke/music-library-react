@@ -1,7 +1,8 @@
 import { useFormik } from 'formik'
 import { useParams } from 'react-router'
+import CustomSelect from './CustomSelect'
 
-const Editform = ({ tracks, onSubmit, handleChange, closeEdit, pageTitle }) => {
+const Editform = ({ tracks, artists, onSubmit, handleChange, closeEdit, pageTitle }) => {
     const { id } = useParams();
     const track = tracks.filter((track) => track.id === id)
 
@@ -57,9 +58,13 @@ const Editform = ({ tracks, onSubmit, handleChange, closeEdit, pageTitle }) => {
                     <input type="text" placeholder="title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                     {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
-                    <label htmlFor="artist">Artist</label>
-                    <input type="text" placeholder="artist" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} />
-                    {formik.errors.artist ? <div className="error">{formik.errors.artist}</div> : null}
+                    <label>Artist</label>
+                    <CustomSelect
+                        onChange={value => formik.setFieldValue('artist', value.value)}
+                        value={formik.values.artist}
+                        options={artists}
+                    />
+                    {formik.errors.artist ? <div className='error'>{formik.errors.artist}</div> : null}
 
                     <label htmlFor="album">Album</label>
                     <input type="text" placeholder="album" name="album" id="album" value={formik.values.album} onChange={formik.handleChange} />
