@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom'
 import parse from 'html-react-parser';
 
 const Library = ({ tracks, handleDelete, handleEdit }) => {
-    // console.log(tracks[0].review)
-    // tracks.map(track => track)
     return (
         <div className="flex flex-col p-8">
             <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 border-black">

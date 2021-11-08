@@ -32280,28 +32280,19 @@ body {
 #file {
   visibility: hidden;
 }
-
-.form {
-  /* display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: center;
-  justify-items: center;
-  align-content: center;
-  margin: 0px 100px; */
-  /* grid-template-columns: 1fr 1fr; */
-  /* grid-template-rows: auto; */
-  /* font-size: 22px; */
+div .form {
+  height: 90vh;
+  max-width: 90vw;
 }
 
 .form button {
-  background: cornflowerblue;
+  background: rgb(79, 70, 229);
   width: 80px;
   border: none;
   margin-top: 1em;
   border-radius: 20px;
   padding: 7px;
-  color: white;
+  color: rgb(186, 197, 204);
 }
 
 .form .fileurl {
@@ -32321,7 +32312,7 @@ body {
 }
 
 .form div label {
-  margin: 16px;
+  /* margin: 8px; */
 }
 
 .form .error {

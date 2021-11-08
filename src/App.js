@@ -5,7 +5,6 @@ import Library from './components/Library';
 import Editform from './components/Editform';
 import './dist/style.css'
 import Addform from './components/Addform';
-// import useFetch from './API/useFetch'
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid';
 
@@ -43,7 +42,6 @@ function App() {
   // open edit page
   const handleEdit = (id) => {
     setEdit(true);
-    console.log('edit ', id)
   }
 
   // finish edit
@@ -76,7 +74,6 @@ function App() {
   //   console.log(formik.values)
   // }
 
-
   // on page load, get tracks from local storage
   useEffect(() => {
     const storedTracks = JSON.parse(localStorage.getItem('tracks'));
@@ -92,7 +89,6 @@ function App() {
       const artistsSet = [...new Set(artists)]
       const list = artistsSet.map(a => { return { value: a, label: a } })
       setArtists(list);
-      console.log(artistsSet)
     }
     getArtists()
   }, [tracks])
@@ -103,15 +99,12 @@ function App() {
       <Switch>
         <Route exact path="/">
           {tracks && <Library tracks={tracks} handleDelete={handleDelete} handleEdit={handleEdit} />}
-
-          {/* {loading && <h2>Loading</h2>}
-          {error && <h2>Something went wrong</h2>} */}
         </Route>
         <Route path="/tracks/:id">
           {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} artists={artists} closeEdit={closeEdit} onSubmit={onSubmit} />}
         </Route>
         <Route path="/add">
-          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Music'} tracks={tracks} artists={artists} />}
+          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Track'} tracks={tracks} artists={artists} />}
         </Route>
       </Switch>
     </>
