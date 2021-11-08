@@ -12,6 +12,7 @@ function App() {
   // let { data: tracks, loading, error } = useFetch('http://localhost:8000/tracks');
   const [tracks, setTracks] = useState([]);
   const [edit, setEdit] = useState(true);
+  const [add, setAdd] = useState(true);
   const [artists, setArtists] = useState([])
 
   const history = useHistory();
@@ -47,6 +48,12 @@ function App() {
   // finish edit
   const closeEdit = () => {
     setEdit(false);
+    history.push('/');
+  }
+  // cancel add
+  const closeAdd = () => {
+    console.log(add)
+    setAdd(false);
     history.push('/');
   }
 
@@ -104,7 +111,7 @@ function App() {
           {tracks && edit && <Editform pageTitle={'Edit'} tracks={tracks} artists={artists} closeEdit={closeEdit} onSubmit={onSubmit} />}
         </Route>
         <Route path="/add">
-          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} pageTitle={'Add Track'} tracks={tracks} artists={artists} />}
+          {<Addform onSubmit={onSubmit} setEdit={setEdit} closeEdit={closeEdit} closeAdd={closeAdd} pageTitle={'Add Track'} tracks={tracks} artists={artists} />}
         </Route>
       </Switch>
     </>
