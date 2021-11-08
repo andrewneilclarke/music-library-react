@@ -3,7 +3,7 @@ import CustomSelect from './CustomSelect'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 
-const Addform = ({ onSubmit, pageTitle, artists }) => {
+const Addform = ({ onSubmit, pageTitle, artists, closeAdd }) => {
 
     let initialValues = {
         title: '',
@@ -106,7 +106,8 @@ const Addform = ({ onSubmit, pageTitle, artists }) => {
                         {/* <textarea className="rounded-2xl" name="review" id="review" cols="1" rows="5" value={formik.values.review} onChange={formik.handleChange}></textarea> */}
 
                         <div>
-                            <button type="submit" className="mb-2 hover:text-indigo-800">Save</button>
+                            <button type="submit" className="mb-2 mr-3 hover:text-indigo-800">Save</button>
+                            <button onClick={closeAdd} type="button" className="hover:text-indigo-800">Cancel</button>
                         </div>
                         <div className="fileurl">
                             <label>Enter File Location</label>
