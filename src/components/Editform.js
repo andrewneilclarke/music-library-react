@@ -1,10 +1,14 @@
+import { useState } from 'react'
 import { useFormik } from 'formik'
 import { useParams } from 'react-router'
 import CustomSelect from './CustomSelect'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
 
 const Editform = ({ tracks, artists, onSubmit, handleChange, closeEdit, pageTitle }) => {
     const { id } = useParams();
     const track = tracks.filter((track) => track.id === id)[0];
+    const [reviewValue, setreviewValue] = useState(track.review)
 
     let initialValues = {
         title: track.title,
@@ -15,9 +19,11 @@ const Editform = ({ tracks, artists, onSubmit, handleChange, closeEdit, pageTitl
         location: track.location,
         path: track.path,
         comment: track.comment,
+        review: reviewValue,
         artwork: track.artwork,
         id
     }
+
 
     // initialValues();
 
@@ -92,6 +98,25 @@ const Editform = ({ tracks, artists, onSubmit, handleChange, closeEdit, pageTitl
                     </select>
 
                     {formik.errors.year ? <div className="error">{formik.errors.year}</div> : null}
+
+                    <label className="my-2">Review</label>
+
+                    <CKEditor
+                        editor={ClassicEditor}
+                        data={formik.values.review}
+                        name="review" id="review"
+                        onChange={
+                            (e, editor) => {
+                                const data = editor.getData()
+                                setreviewValue(data)
+                            }
+
+
+                        }
+
+                    />
+                    {/* <p>{data}</p> */}
+
                     <div className="flex justify-end">
                         {/* <button onClick={() => setFormValues(initialValues)} type="button" className="transform ease-in duration-100 hover:scale-105">Load</button> */}
                         <button type="submit" className="mr-3 hover:text-indigo-800">Save</button>
@@ -101,8 +126,8 @@ const Editform = ({ tracks, artists, onSubmit, handleChange, closeEdit, pageTitl
                         <label className="mt-3">File Location</label>
                         <input type="url" name="location" id="location" value={formik.values.location} onChange={formik.handleChange} />
 
-                        <label htmlFor="file">Locate</label>
-                        <input type="file" name="file" id="file" value={formik.values.path} onChange={formik.handleChange} />
+                        {/* <label htmlFor="file">Locate</label>
+                        <input type="file" name="file" id="file" value={formik.values.path} onChange={formik.handleChange} /> */}
                     </div>
 
                     <label htmlFor="comment"></label>

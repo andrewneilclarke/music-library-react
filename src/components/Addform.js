@@ -14,7 +14,8 @@ const Addform = ({ onSubmit, pageTitle, artists, closeAdd }) => {
         location: '',
         path: '',
         review: '',
-        artwork: ''
+        artwork: '',
+        comment: ''
     }
 
 
@@ -117,6 +118,8 @@ const Addform = ({ onSubmit, pageTitle, artists, closeAdd }) => {
                             <input type="file" name="file" id="file" value={formik.values.path} onChange={formik.handleChange} /> */}
                         </div>
 
+                        <label htmlFor="comment"></label>
+                        <textarea name="comment" id="comment" cols="30" rows="10" value={formik.values.comment} onChange={formik.handleChange}></textarea>
 
                     </div>
                 </form>
