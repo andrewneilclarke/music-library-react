@@ -55,11 +55,11 @@ const Addform = ({ onSubmit, pageTitle, artists, closeAdd }) => {
                 <h1 className="text-xl">{pageTitle}</h1>
                 <form className="form flex flex-col items-between mt-3" action="results.js" onSubmit={formik.handleSubmit}>
                     <div className="flex flex-col">
-                        <label>Title</label>
+                        <label htmlFor="title">Title</label>
                         <input type="text" placeholder="Title" name="title" id="title" value={formik.values.title} onChange={formik.handleChange} />
                         {formik.errors.title ? <div className="error">{formik.errors.title}</div> : null}
 
-                        <label className="mt-3">Artist</label>
+                        <label className="mt-3" htmlFor="artist">Artist</label>
                         <input type="text" placeholder="Add new" className="mb-3" name="artist" id="artist" value={formik.values.artist} onChange={formik.handleChange} />
                         <CustomSelect
                             onChange={value => formik.setFieldValue('artist', value.value)}
@@ -67,7 +67,7 @@ const Addform = ({ onSubmit, pageTitle, artists, closeAdd }) => {
                             options={artists}
                         />
                         {formik.errors.artist ? <div className='error'>{formik.errors.artist}</div> : null}
-                        <label className="mt-3">Album</label>
+                        <label className="mt-3" htmlFor="album">Album</label>
                         <input type="text" placeholder="album" name="album" id="album" value={formik.values.album} onChange={formik.handleChange} />
                         {formik.errors.album ? <div className="error">{formik.errors.album}</div> : null}
 
